@@ -1,17 +1,15 @@
 import React from "react";
 
-const PersonalPreview = (props) => {
-    console.log(props);
-    const cv = props.cv;
-    const fullName = cv.firstName + " " + cv.lastName;
-
-    return(
-        <div>
-            <div className="fullName">{ fullName }</div>
-            <div className="email">{ cv.email }</div>
-            <div className="phoneNumber">{ cv.phoneNumber }</div>
-        </div>
-    )
+const PersonalPreview = ({cv}) => {
+    return (
+      <div>
+        <div className="cvHeader">Contact Info</div>
+        <div className="contactHeader">Email</div>
+        <div className="email">{cv.email}</div>
+        <div className="contactHeader">Phone Number</div>
+        <div className="phoneNumber">{cv.phoneNumber}</div>
+      </div>
+    );
 }
 
 export default PersonalPreview;
