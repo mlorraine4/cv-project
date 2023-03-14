@@ -37,48 +37,54 @@ const Education = ({ handleSubmit, handleChange }) => {
   );
 };
 
-const EditEducation = ({ educationArray, handleEdit }) => {
+const EditEducation = ({ educationArray, handleEdit, handleDelete }) => {
   return (
     <div className="editEducation">
       <button className="closeButton" onClick={()=>{closeEdit("Education")}}>X</button>
       {educationArray.map((education) => {
         return (
           <div key={education.id}>
-          <form
-            onSubmit={handleEdit}
-            data-key={education.id}
-            className="editEducationSub"
-          >
-            <div className="flex">
-              <div>
-                <label>Degree</label>
-                <input
-                  id="degree"
-                  placeholder={education.degree}
-                  onChange={handleEdit}
-                ></input>
+            <form
+              onSubmit={handleEdit}
+              data-key={education.id}
+              className="editEducationSub"
+            >
+              <div className="flex">
+                <div>
+                  <label>Degree</label>
+                  <input
+                    id="degree"
+                    placeholder={education.degree}
+                    onChange={handleEdit}
+                  ></input>
+                </div>
+                <div>
+                  <label>School</label>
+                  <input id="school" placeholder={education.school}></input>
+                </div>
+                <div>
+                  <label>Location</label>
+                  <input id="location" placeholder={education.location}></input>
+                </div>
               </div>
-              <div>
-                <label>School</label>
-                <input id="school" placeholder={education.school}></input>
+              <div className="flex">
+                <div>
+                  <label>Start Date</label>
+                  <input
+                    id="startDate"
+                    placeholder={education.startDate}
+                  ></input>
+                </div>
+                <div>
+                  <label>End Date</label>
+                  <input id="endDate" placeholder={education.endDate}></input>
+                </div>
               </div>
-              <div>
-                <label>Location</label>
-                <input id="location" placeholder={education.location}></input>
-              </div>
-            </div>
-            <div className="flex">
-              <div>
-                <label>Start Date</label>
-                <input id="startDate" placeholder={education.startDate}></input>
-              </div>
-              <div>
-                <label>End Date</label>
-                <input id="endDate" placeholder={education.endDate}></input>
-              </div>
-            </div>
-            <input type="submit" value="update"></input>
-          </form>
+              <input type="submit" value="update"></input>
+            </form>
+            <button data-key={education.id} onClick={handleDelete}>
+              delete
+            </button>
           </div>
         );
       })}

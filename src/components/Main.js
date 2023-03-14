@@ -10,61 +10,29 @@ import {
   formatPhone,
   validatePersonal,
   closeEdit,
+  openCVEdit,
 } from "./Form/formHelpers";
+import ExampleCV from "./CVPreview/ExampleCV";
+import { OpenEditButtons } from "./Form/EditForm";
+import { ExperienceTasks } from "./Form/Experience";
 
-// empty state
-// constructor() {
-//     super();
-//     this.state = {
-//       cv: {
-//         firstName: "",
-//         lastName: "",
-//         email: "",
-//         phoneNumber: "",
-//       },
-//       education: {
-//         degree: "",
-//         school: "",
-//         startDate: "",
-//         endDate: "",
-//         location: "",
-//         id: uniqid(),
-//       },
-//       educationArray: [],
-//       experience: {
-//         jobTitle: "",
-//         company: "",
-//         location: "",
-//         startDate: "",
-//         endDate: "",
-//         id: uniqid(),
-//       },
-//       experienceArray: [],
-//       skills: {
-//         text: "",
-//         id: uniqid(),
-//       },
-//       skillsArray: [],
-//     };
-//   }
-//TODO: add delete option for all edits
 // TODO: add edits for personal, experience, skills
 class Main extends Component {
   constructor() {
     super();
     this.state = {
       cv: {
-        firstName: "Maria",
-        lastName: "Silvia",
-        email: "maria.lorraine.silvia4@gmail.com",
+        firstName: "",
+        lastName: "",
+        email: "",
         phoneNumber: "",
       },
       education: {
-        degree: "Biological Anthropology",
-        school: "Penn State University",
-        startDate: "August 2013",
-        endDate: "August 2017",
-        location: "University Park, PA",
+        degree: "",
+        school: "",
+        startDate: "",
+        endDate: "",
+        location: "",
         id: uniqid(),
       },
       educationArray: [],
@@ -82,6 +50,12 @@ class Main extends Component {
         id: uniqid(),
       },
       skillsArray: [],
+      task: {
+        text: "",
+        key: "",
+        id: uniqid(),
+      },
+      taskArray: [],
     };
   }
 
@@ -207,6 +181,7 @@ class Main extends Component {
       let editList = document.querySelectorAll(".editEducationSub");
       if (editList.length === 0) {
         // TODO: close edit education fnc
+        closeEdit("Education");
       }
     }, 10);
   };
@@ -284,10 +259,37 @@ class Main extends Component {
     setTimeout(() => {
       let editList = document.querySelectorAll(".editExperienceSub");
       if (editList.length === 0) {
-        // TODO: close edit experience fnc
         closeEdit("Experience");
       }
     }, 10);
+  };
+
+  handleChangeExperienceTask = (e) => {
+    const { id, value } = e.target;
+    let radio = document.getElementsByName("job");
+    for (let i = 0; i < radio.length; i++) {
+      if (radio[i].checked) {
+        this.setState({
+          task: {
+            text: e.target.value,
+            key: radio[i].getAttribute("data-key"),
+            id: this.state.task.id,
+          },
+        });
+      }
+    }
+  };
+
+  handleSubmitExperienceTask = (e) => {
+    e.preventDefault();
+    this.setState({
+      taskArray: [...this.state.taskArray, this.state.task],
+      task: {
+        text: "",
+        key: "",
+        id: uniqid(),
+      },
+    });
   };
 
   // SKILLS
@@ -298,7 +300,6 @@ class Main extends Component {
         id: this.state.skills.id,
       },
     });
-    console.log(this.state.skills);
   };
 
   handleSubmitSkills = (e) => {
@@ -314,7 +315,6 @@ class Main extends Component {
       });
       e.target.reset();
     }
-    console.log(this.state.skillsArray);
   };
 
   handleEditSkills = (e) => {
@@ -365,6 +365,10 @@ class Main extends Component {
     }, 10);
   };
 
+  checkCompleted = (e) => {
+    // TODO: write fnc
+  }
+// TODO: make edit a pop up, and main faded and unclickable unitl press update or x
   openEditEducation = (e) => {
     if (this.state.educationArray.length !== 0) {
       document.querySelector(".editEducation").style.display = "block";
@@ -383,36 +387,81 @@ class Main extends Component {
     }
   };
 
+  openTaskForm = (e) => {
+    console.log(this.state.experienceArray.length);
+    // 1. fade document, pop up task form on top of screen
+    if (this.state.experienceArray.length !== 0) {
+    document.querySelector(".main").style.opacity = "0.5";
+    document.querySelector(".taskForm").style.display = "block";
+    }
+  };
+
   render() {
     return (
       <div>
-        <Form
-          educationArray={this.state.educationArray}
+        <ExperienceTasks
+          handleChange={this.handleChangeExperienceTask}
+          handleSubmit={this.handleSubmitExperienceTask}
           experienceArray={this.state.experienceArray}
-          skillsArray={this.state.skillsArray}
-          handleSubmitPersonal={this.handleSubmitPersonal}
-          validateEmail={this.validateEmail}
-          validatePhone={this.validatePhone}
-          handleSubmitEducation={this.handleSubmitEducation}
-          handleChangeEducation={this.handleChangeEducation}
-          handleEditEducation={this.handleEditEducation}
-          handleSubmitExperience={this.handleSubmitExperience}
-          handleChangeExperience={this.handleChangeExperience}
-          handleEditExperience={this.handleEditExperience}
-          handleChangeSkills={this.handleChangeSkills}
-          handleSubmitSkills={this.handleSubmitSkills}
-          handleEditSkills={this.handleEditSkills}
-          openEditSkills={this.openEditSkills}
-          handleDeleteSkills={this.handleDeleteSkills}
-          handleDeleteEducation={this.handleDeleteEducation}
-          handleDeleteExperience={this.handleDeleteExperience}
-          openEditEducation={this.openEditEducation}
-          openEditExperience={this.openEditExperience}
         />
-        <CVMain props={this.state} />
+        <div className="main">
+          <div className="cvExample">
+            <div className="exampleText">Example CV</div>
+            <ExampleCV />
+            <button className="create" onClick={openCVEdit}>Create Your CV</button>
+          </div>
+          <div className="cvEdit">
+            <Form
+              educationArray={this.state.educationArray}
+              experienceArray={this.state.experienceArray}
+              skillsArray={this.state.skillsArray}
+              handleSubmitPersonal={this.handleSubmitPersonal}
+              validateEmail={this.validateEmail}
+              validatePhone={this.validatePhone}
+              handleSubmitEducation={this.handleSubmitEducation}
+              handleChangeEducation={this.handleChangeEducation}
+              handleEditEducation={this.handleEditEducation}
+              handleSubmitExperience={this.handleSubmitExperience}
+              handleChangeExperience={this.handleChangeExperience}
+              handleEditExperience={this.handleEditExperience}
+              handleChangeSkills={this.handleChangeSkills}
+              handleSubmitSkills={this.handleSubmitSkills}
+              handleEditSkills={this.handleEditSkills}
+              handleDeleteSkills={this.handleDeleteSkills}
+              handleDeleteEducation={this.handleDeleteEducation}
+              handleDeleteExperience={this.handleDeleteExperience}
+              handleSubmitExperienceTask={this.handleSubmitExperienceTask}
+              handleChangeExperienceTask={this.handleChangeExperienceTask}
+            />
+            <OpenEditButtons
+              openEditEducation={this.openEditEducation}
+              openEditExperience={this.openEditExperience}
+              openEditSkills={this.openEditSkills}
+              openTaskForm={this.openTaskForm}
+            />
+          </div>
+          <div className="cvMain">
+            <CVMain props={this.state} />
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 export default Main;
+
+// icons:
+// {
+//   /* <a href="https://www.flaticon.com/free-icons/email" title="email icons">
+//   Email icons created by Freepik - Flaticon
+// </a>; 
+
+// <a href="https://www.flaticon.com/free-icons/phone" title="phone icons">Phone icons created by Gregor Cresnar - Flaticon</a>*/
+// <a
+//   href="https://www.flaticon.com/free-icons/bullet-point"
+//   title="bullet point icons"
+// >
+//   Bullet point icons created by Freepik - Flaticon
+// </a>;
+// }

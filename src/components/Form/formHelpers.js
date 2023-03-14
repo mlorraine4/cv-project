@@ -1,3 +1,8 @@
+function openCVEdit() {
+  document.querySelector(".cvEdit").style.display = "flex";
+  document.querySelector(".cvExample").style.display = "none";
+}
+
 function formatPhone(phoneNumber) {
   let format =
     "(" +
@@ -72,6 +77,7 @@ function closeEdit(formName) {
 }
 
 export {
+  openCVEdit,
   formatPhone,
   validatePersonal,
   validateEducation,

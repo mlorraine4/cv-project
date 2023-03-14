@@ -18,7 +18,11 @@ const Experience = ({ handleChange, handleSubmit }) => {
           </div>
           <div>
             <label>Location</label>
-            <input id="location" onChange={handleChange} placeholder="City, State"></input>
+            <input
+              id="location"
+              onChange={handleChange}
+              placeholder="City, State"
+            ></input>
           </div>
         </div>
         <div className="flex">
@@ -97,4 +101,37 @@ const EditExperience = ({ experienceArray, handleEdit, handleDelete }) => {
   );
 };
 
-export {Experience, EditExperience}
+const ExperienceTasks = ({experienceArray, handleSubmit, handleChange}) => {
+  return (
+    <div className="subForm taskForm">
+      <form onSubmit={handleSubmit}>
+        <div className="formTitle">Tasks</div>
+        {experienceArray.map((experience) => {
+          return (
+            <div key={experience.id} className="flex">
+              <input
+                type="radio"
+                data-key={experience.id}
+                value={experience.jobTitle}
+                id={experience.jobTitle}
+                name="job"
+              />
+              <label>
+                {experience.jobTitle}
+              </label>
+            </div>
+          );
+        })}
+        <textarea
+          id="task"
+          placeholder="describe your tasks for this job"
+          onChange={handleChange}
+        ></textarea>
+        <input type="submit" value="add"></input>
+        <div className="formError tasksEmpty">*Please fill out this field</div>
+      </form>
+    </div>
+  );
+}
+
+export {Experience, EditExperience, ExperienceTasks}

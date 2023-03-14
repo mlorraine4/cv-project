@@ -1,12 +1,23 @@
+* {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 200;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
 .cv {
   text-align: center;
+  background-color: white;
+  box-shadow: 5px 5px 5px rgb(128, 128, 128, 0.8);
 }
 
 .header {
-  text-align: center;
-  background-color: darkblue;
+  text-align: left;
+  background-color: #4070d0;
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
   padding: 20px;
 }
 
@@ -23,20 +34,66 @@ input, button {
   margin: 5px;
 }
 
+button, input[type="submit"] {
+  border-radius: 8px;
+  border: none;
+  outline-style: none;
+  padding: 5px;}
+  button:hover, input[type="submit"]:hover {
+  background-color: azure;
+}
+
+.cvEdit {
+  display: none;
+  margin-left: 20px;
+  margin-right: 20px;
+  justify-content: center;
+}
+
+.editButtons {
+  width: min-content;
+  text-align: center;
+  margin: 40px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.editButton {
+  width: 8em;
+  display: flex;
+  justify-content: center;
+}
+
+.editTitle {
+  margin: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
 .nameTitle {
   font-size: 2em;
+  color: #009DCF;
+  padding: 20px;
 }
 
 .formMain {
   text-align: center;
-  margin-left: 20%;
-  margin-right: 20%;
+  width: 60%;
+  margin-left: 15%;
+  min-width: 600px;
 }
 
 .subForm, .editPersonal, .editEducation, .editExperience, .editSkills {
   margin: 20px;
-  border: 2px solid gray;
-  border-radius: 8px;
+  box-shadow: 5px 5px 5px rgb(128, 128, 128, 0.5);
   padding: 5px;
 }
 
@@ -46,6 +103,7 @@ input, button {
 
 .formTitle {
   margin: 10px;
+  font-style: italic;
 }
 
 .phoneError, .formError, .emailError, .placeHolder {
@@ -60,42 +118,39 @@ input, button {
   position: relative;
 }
 
-.cvLeft, .cvRight, .cvComponent {
+.cvLeft, .cvRight {
   margin: 20px;
 }
 
+.cvComponent {
+  margin-bottom: 30px;
+}
+
 .cvLeft {
-  width: 60%;
+  width: 70%;
 }
 
 .cvRight {
-  width: 40%;
+  width: 30%;
 }
 
-.educationItem, .experienceItem {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: auto auto;
+.space {
+  display: flex;
+  justify-content: space-between;
 }
 
-.educationDates, .experienceDates {
-  grid-row: 1/2;
-  grid-column: 1/2;
+.company, .school {
+  text-align: left;
 }
 
-.school, .jobTitle {
-  grid-row: 1/2;
-  grid-column: 2/3;
+.educationLocation, .experienceLocation, .school, .company {
+  font-style: italic;
 }
 
-.degree, .company {
-  grid-row: 2/3;
-  grid-column: 2/3;
-}
-
-.educationLocation, .experienceLocation {
-  grid-row: 2/3;
-  grid-column: 1/2;
+.experienceDates, .educationDates {
+  font-weight: bold;
+  color: gray;
+  font-size: .8em;
 }
 
 .contactTitle {
@@ -104,6 +159,16 @@ input, button {
 
 .cvHeader {
   font-weight: bold;
+  color: #009DCF;
+  text-align: left;
+  margin: 10px;
+}
+
+.personalHeader, .skillsHeader {
+  text-align: center;
+  font-weight: bold;
+  color: #009DCF;
+  margin: 10px;;
 }
 
 .closeButton {
@@ -113,8 +178,107 @@ input, button {
   color: white;
   position: absolute;
   right: 5%;
+  padding: 2px 5px 2px 5px;
 }
 
 .closeButton:hover {
   background-color: red;
+}
+
+.exampleText {
+  font-style: italic;
+}
+
+.cvMain {
+  display: none;
+  text-align: center;
+}
+
+.cvExample {
+  text-align: center;
+}
+
+.skill {
+  text-align: left;
+}
+
+li {
+  list-style-type: circle;
+  margin: 5px;
+}
+
+.skillsComponent {
+  margin: 20px;
+  text-align: left;
+}
+
+.jobTitle, .degree {
+  font-weight: bold;
+}
+
+.cv {
+  width: 950px;
+  margin: auto;
+  padding: 30px;
+}
+
+.icon {
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.taskForm {
+  display: none;
+  position: fixed;
+  top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: antiquewhite;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.bulletPoint {
+  width: 15px;
+  height: 15px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.taskItem, .exampleText {
+  margin: 10px;
+}
+
+.taskComponent {
+  padding: 10px;
+}
+
+.personalItem {
+  margin: 5px;
+}
+
+.create {
+  position: fixed;
+  bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  font-size: 1em;
+  background-color: rgb(132, 196, 100, 0.8);
+  color: white;
+  font-weight: bold;
+}
+
+.create:hover {
+    background-color: rgb(132, 196, 100);
+
 }

@@ -1,19 +1,32 @@
 import React from "react";
+import listIcon from "../../images/arrow.png";
 
-const ExperiencePreview = (props) => {
-  const { experienceArray } = props;
+const ExperiencePreview = ({experienceArray, taskArray}) => {
   return (
     <div className="cvComponent">
-      <div className="cvHeader">Work Experience</div>
+      <div className="cvHeader">PROFESSIONAL EXPERIENCE</div>
       {experienceArray.map((experience) => {
         return (
           <div className="experienceItem" key={experience.id}>
-            <div className="experienceDates">
-              {experience.startDate} - {experience.endDate}
+            <div className="flex space">
+              <div className="jobTitle">{experience.jobTitle}</div>
+              <div className="experienceDates">
+                {experience.startDate} - {experience.endDate}
+              </div>
             </div>
-            <div className="jobTitle">{experience.jobTitle}</div>
-            <div className="company">{experience.company}</div>
-            <div className="experienceLocation">{experience.location}</div>
+            <div className="company">{experience.company}, {experience.location}</div>
+            <div className="taskComponent">
+          {taskArray.map((task) => {
+            if (experience.id === task.key) {
+              return(
+                <div key={task.id} className="flex taskItem">
+                  <img src={listIcon} className="bulletPoint"></img>
+                  <div>{task.text}</div>
+                </div>
+              )
+            }
+          })}
+          </div>
           </div>
         );
       })}

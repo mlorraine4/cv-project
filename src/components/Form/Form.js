@@ -1,10 +1,9 @@
 import React from "react";
 import { Education } from "./Education";
-import { Experience } from "./Experience";
+import { Experience, ExperienceTasks } from "./Experience";
 import Personal from "./Personal";
 import { Skills } from "./Skills";
-import { openEdit } from "./formHelpers";
-import EditForm from "./EditDisplay";
+import { EditForm } from "./EditForm";
 // TODO: don't send ALL props!
 const Form = ({
   educationArray,
@@ -48,19 +47,19 @@ const Form = ({
         handleChange={handleChangeSkills}
         handleSubmit={handleSubmitSkills}
       />
-      <EditForm 
-      educationArray={educationArray}
-      experienceArray={experienceArray}
-      skillsArray={skillsArray}
-      handleEditEducation={handleEditEducation}
-      handleEditExperience={handleEditExperience}
-      handleDeleteEducation={handleDeleteEducation}
-      handleDeleteExperience={handleDeleteExperience}
-      handleEditSkills={handleEditSkills}
-      openEditSkills={openEditSkills}
-      openEditEducation={openEditEducation}
-      openEditExperience={openEditExperience}
-      handleDeleteSkills={handleDeleteSkills}
+      <EditForm
+        educationArray={educationArray}
+        experienceArray={experienceArray}
+        skillsArray={skillsArray}
+        handleEditEducation={handleEditEducation}
+        handleEditExperience={handleEditExperience}
+        handleDeleteEducation={handleDeleteEducation}
+        handleDeleteExperience={handleDeleteExperience}
+        handleEditSkills={handleEditSkills}
+        openEditSkills={openEditSkills}
+        openEditEducation={openEditEducation}
+        openEditExperience={openEditExperience}
+        handleDeleteSkills={handleDeleteSkills}
       />
     </div>
   );

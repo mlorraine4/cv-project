@@ -2,12 +2,12 @@ import React from "react";
 
 const SkillsPreview = ({ skillsArray }) => {
    return (
-     <div>
-        <div className="cvHeader">Skills</div>
+     <div className="skillsComponent">
+        <div className="skillsHeader">SKILLS</div>
        {skillsArray.map((skills) => {
          return (
-           <div className="skill" key={skills.id}> {skills.text}
-           </div>
+           <li className="skill" key={skills.id}> {skills.text}
+           </li>
          );
        })}
      </div>

@@ -12,19 +12,10 @@ const EditForm = ({
   handleEditExperience,
   handleDeleteExperience,
   handleEditSkills,
-  openEditSkills,
   handleDeleteSkills,
-  openEditEducation,
-  openEditExperience,
 }) => {
   return (
     <div>
-      <div className="editTitle">Edit Your CV</div>
-      <div>
-        <button onClick={openEditEducation}>edit education</button>
-        <button onClick={openEditExperience}>edit experience</button>
-        <button onClick={openEditSkills}>edit skills</button>
-      </div>
       <EditEducation
         educationArray={educationArray}
         handleEdit={handleEditEducation}
@@ -44,4 +35,28 @@ const EditForm = ({
   );
 };
 
-export default EditForm;
+const OpenEditButtons = ({openEditEducation, openEditExperience, openEditSkills, openTaskForm}) => {
+  return (
+    <div className="editButtons">
+      <div className="editTitle">Edit Your CV</div>
+      <div className="buttons">
+        <div>
+          <button className="editButton" onClick={openEditEducation}>
+            edit education
+          </button>
+        </div>
+        <button className="editButton" onClick={openEditExperience}>
+          edit experience
+        </button>
+        <button className="editButton" onClick={openEditSkills}>
+          edit skills
+        </button>
+        <button>view your cv</button>
+      </div>
+      <div>add bullet points for each place of work here:</div>
+      <button onClick={openTaskForm}>add tasks</button>
+    </div>
+  );
+};
+
+export {EditForm, OpenEditButtons }

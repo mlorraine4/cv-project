@@ -12,10 +12,14 @@ const CVMain = ({ props }) => {
   return (
     <div className="cv">
       <div className="nameTitle">{fullName}</div>
+      <hr></hr>
       <div className="flex">
         <div className="cvLeft">
           <EducationPreview educationArray={props.educationArray} />
-          <ExperiencePreview experienceArray={props.experienceArray} />
+          <ExperiencePreview 
+          experienceArray={props.experienceArray}
+          taskArray={props.taskArray}
+           />
         </div>
         <div className="cvRight">
           {/* TODO: only give email & phone to personal prev */}
