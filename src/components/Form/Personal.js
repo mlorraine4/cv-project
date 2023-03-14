@@ -8,14 +8,14 @@ const Personal = ({ handleSubmit, validatePhone, validateEmail }) => {
         <div className="flex">
           <div>
             <label>First Name</label>
-            <input name="firstName" id="firstName"></input>
+            <input name="firstName" id="firstName" type="text"></input>
             <div className="placeHolder">
               *Please enter a valid email address
             </div>
           </div>
           <div>
             <label>Last Name</label>
-            <input name="lastName" id="lastName"></input>
+            <input name="lastName" id="lastName" type="text"></input>
             <div className="placeHolder">
               *Please enter a 10-digit phone number
             </div>
@@ -40,6 +40,7 @@ const Personal = ({ handleSubmit, validatePhone, validateEmail }) => {
               name="phoneNumber"
               id="phoneNumber"
               onChange={validatePhone}
+              type="text"
             ></input>
             <div className="phoneError">
               *Please enter a 10-digit phone number

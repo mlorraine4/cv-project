@@ -1,6 +1,7 @@
 import React from "react";
 import { EditEducation } from "./Education";
 import { EditExperience } from "./Experience";
+import { downloadPDF } from "./formHelpers";
 import { EditSkills } from "./Skills";
 
 const EditForm = ({
@@ -51,10 +52,10 @@ const OpenEditButtons = ({openEditEducation, openEditExperience, openEditSkills,
         <button className="editButton" onClick={openEditSkills}>
           edit skills
         </button>
-        <button>view your cv</button>
+        <button className="download" onClick={downloadPDF}>download cv</button>
       </div>
       <div>add bullet points for each place of work here:</div>
-      <button onClick={openTaskForm}>add tasks</button>
+      <button className="taskButton" onClick={openTaskForm}>add tasks</button>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Education } from "./Education";
-import { Experience, ExperienceTasks } from "./Experience";
+import { Experience } from "./Experience";
 import Personal from "./Personal";
 import { Skills } from "./Skills";
 import { EditForm } from "./EditForm";

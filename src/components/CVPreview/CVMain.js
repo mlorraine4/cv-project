@@ -4,10 +4,7 @@ import ExperiencePreview from "./ExperiencePreview";
 import PersonalPreview from "./PersonalPreview";
 import SkillsPreview from "./SkillsPreview";
 
-// TODO:this only displays when all forms are submitted!
-
 const CVMain = ({ props }) => {
-  // console.log(props);
   const fullName = props.cv.firstName + " " + props.cv.lastName;
   return (
     <div className="cv">

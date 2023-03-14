@@ -15,8 +15,7 @@ import {
 import ExampleCV from "./CVPreview/ExampleCV";
 import { OpenEditButtons } from "./Form/EditForm";
 import { ExperienceTasks } from "./Form/Experience";
-
-// TODO: add edits for personal, experience, skills
+// TODO: style task form and radio buttons and textarea 
 class Main extends Component {
   constructor() {
     super();
@@ -77,7 +76,6 @@ class Main extends Component {
     let email = document.getElementById("email").value;
     let emailRGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let emailResult = emailRGEX.test(email);
-    console.log(emailResult);
     if (emailResult) {
       document.querySelector(".emailError").style.opacity = "0";
       return true;
@@ -180,7 +178,6 @@ class Main extends Component {
     setTimeout(() => {
       let editList = document.querySelectorAll(".editEducationSub");
       if (editList.length === 0) {
-        // TODO: close edit education fnc
         closeEdit("Education");
       }
     }, 10);
@@ -265,7 +262,6 @@ class Main extends Component {
   };
 
   handleChangeExperienceTask = (e) => {
-    const { id, value } = e.target;
     let radio = document.getElementsByName("job");
     for (let i = 0; i < radio.length; i++) {
       if (radio[i].checked) {
@@ -365,9 +361,6 @@ class Main extends Component {
     }, 10);
   };
 
-  checkCompleted = (e) => {
-    // TODO: write fnc
-  }
 // TODO: make edit a pop up, and main faded and unclickable unitl press update or x
   openEditEducation = (e) => {
     if (this.state.educationArray.length !== 0) {
@@ -389,10 +382,10 @@ class Main extends Component {
 
   openTaskForm = (e) => {
     console.log(this.state.experienceArray.length);
-    // 1. fade document, pop up task form on top of screen
     if (this.state.experienceArray.length !== 0) {
     document.querySelector(".main").style.opacity = "0.5";
     document.querySelector(".taskForm").style.display = "block";
+    // TODO: make background unclickable?
     }
   };
 

@@ -1,6 +1,10 @@
+import * as htmlToImage from "html-to-image";
+import { jsPDF } from "jspdf";
+
 function openCVEdit() {
   document.querySelector(".cvEdit").style.display = "flex";
   document.querySelector(".cvExample").style.display = "none";
+  document.querySelector(".cvMain").style.display = "block"
 }
 
 function formatPhone(phoneNumber) {
@@ -76,6 +80,27 @@ function closeEdit(formName) {
   }
 }
 
+function closeTaskForm() {
+  document.querySelector(".main").style.opacity = "1";
+  document.querySelector(".taskForm").style.display = "none";
+}
+
+function downloadPDF() {
+
+  htmlToImage
+    .toPng(document.querySelectorAll(".cv")[1], { quality: 0.95 })
+    .then(function (dataUrl) {
+      var link = document.createElement("a");
+      link.download = "my-image-name.jpeg";
+      const pdf = new jsPDF();
+      const imgProps = pdf.getImageProperties(dataUrl);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("download.pdf");
+    });
+}
+
 export {
   openCVEdit,
   formatPhone,
@@ -86,4 +111,6 @@ export {
   clearFormErrors,
   openEdit,
   closeEdit,
+  closeTaskForm,
+  downloadPDF,
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { closeEdit } from "./formHelpers";
+import { closeEdit, closeTaskForm } from "./formHelpers";
 
 const Experience = ({ handleChange, handleSubmit }) => {
   return (
@@ -10,32 +10,32 @@ const Experience = ({ handleChange, handleSubmit }) => {
         <div className="flex">
           <div>
             <label>Job Title</label>
-            <input id="jobTitle" onChange={handleChange}></input>
+            <input id="jobTitle" onChange={handleChange} type="text"></input>
           </div>
           <div>
             <label>Company</label>
-            <input id="company" onChange={handleChange}></input>
+            <input id="company" onChange={handleChange} type="text"></input>
           </div>
           <div>
             <label>Location</label>
             <input
               id="location"
               onChange={handleChange}
-              placeholder="City, State"
+              type="text"
             ></input>
           </div>
         </div>
         <div className="flex">
           <div>
             <label>Start Date</label>
-            <input id="startDate" onChange={handleChange}></input>
+            <input id="startDate" onChange={handleChange} type="text"></input>
           </div>
           <div>
             <label>End Date</label>
-            <input id="endDate" onChange={handleChange}></input>
+            <input id="endDate" onChange={handleChange} type="text"></input>
           </div>
         </div>
-        <input type="submit" value="Add"></input>
+        <input type="submit" value="add"></input>
         <div className="experienceEmpty formError">
           *All fields are required
         </div>
@@ -62,17 +62,23 @@ const EditExperience = ({ experienceArray, handleEdit, handleDelete }) => {
                   <input
                     id="jobTitle"
                     placeholder={experience.jobTitle}
+                    type="text"
                   ></input>
                 </div>
                 <div>
                   <label>Company</label>
-                  <input id="company" placeholder={experience.company}></input>
+                  <input
+                    id="company"
+                    placeholder={experience.company}
+                    type="text"
+                  ></input>
                 </div>
                 <div>
                   <label>Location</label>
                   <input
                     id="location"
                     placeholder={experience.location}
+                    type="text"
                   ></input>
                 </div>
               </div>
@@ -82,11 +88,16 @@ const EditExperience = ({ experienceArray, handleEdit, handleDelete }) => {
                   <input
                     id="startDate"
                     placeholder={experience.startDate}
+                    type="text"
                   ></input>
                 </div>
                 <div>
                   <label>End Date</label>
-                  <input id="endDate" placeholder={experience.endDate}></input>
+                  <input
+                    id="endDate"
+                    placeholder={experience.endDate}
+                    type="text"
+                  ></input>
                 </div>
               </div>
               <input type="submit" value="update"></input>
@@ -104,6 +115,12 @@ const EditExperience = ({ experienceArray, handleEdit, handleDelete }) => {
 const ExperienceTasks = ({experienceArray, handleSubmit, handleChange}) => {
   return (
     <div className="subForm taskForm">
+      <button
+        className="closeButton"
+        onClick={closeTaskForm}
+      >
+        X
+      </button>
       <form onSubmit={handleSubmit}>
         <div className="formTitle">Tasks</div>
         {experienceArray.map((experience) => {
@@ -116,9 +133,7 @@ const ExperienceTasks = ({experienceArray, handleSubmit, handleChange}) => {
                 id={experience.jobTitle}
                 name="job"
               />
-              <label>
-                {experience.jobTitle}
-              </label>
+              <label>{experience.jobTitle}</label>
             </div>
           );
         })}

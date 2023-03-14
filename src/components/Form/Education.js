@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { closeEdit, closeEducation } from "./formHelpers";
+import React from "react";
+import { closeEdit } from "./formHelpers";
 
 const Education = ({ handleSubmit, handleChange }) => {
   return (
@@ -9,25 +9,25 @@ const Education = ({ handleSubmit, handleChange }) => {
         <div className="flex">
           <div>
             <label>Degree</label>
-            <input id="degree" onChange={handleChange} ></input>
+            <input id="degree" onChange={handleChange} type="text"></input>
           </div>
           <div>
             <label>School</label>
-            <input id="school" onChange={handleChange} ></input>
+            <input id="school" onChange={handleChange} type="text"></input>
           </div>
           <div>
             <label>Location</label>
-            <input id="location" onChange={handleChange} ></input>
+            <input id="location" onChange={handleChange} type="text"></input>
           </div>
         </div>
         <div className="flex">
           <div>
             <label>Start Date</label>
-            <input id="startDate" onChange={handleChange} ></input>
+            <input id="startDate" onChange={handleChange} type="text"></input>
           </div>
           <div>
             <label>End Date</label>
-            <input id="endDate" onChange={handleChange} ></input>
+            <input id="endDate" onChange={handleChange} type="text"></input>
           </div>
         </div>
         <input type="submit" value="add"></input>
@@ -56,15 +56,24 @@ const EditEducation = ({ educationArray, handleEdit, handleDelete }) => {
                     id="degree"
                     placeholder={education.degree}
                     onChange={handleEdit}
+                    type="text"
                   ></input>
                 </div>
                 <div>
                   <label>School</label>
-                  <input id="school" placeholder={education.school}></input>
+                  <input
+                    id="school"
+                    placeholder={education.school}
+                    type="text"
+                  ></input>
                 </div>
                 <div>
                   <label>Location</label>
-                  <input id="location" placeholder={education.location}></input>
+                  <input
+                    id="location"
+                    placeholder={education.location}
+                    type="text"
+                  ></input>
                 </div>
               </div>
               <div className="flex">
@@ -73,11 +82,16 @@ const EditEducation = ({ educationArray, handleEdit, handleDelete }) => {
                   <input
                     id="startDate"
                     placeholder={education.startDate}
+                    type="text"
                   ></input>
                 </div>
                 <div>
                   <label>End Date</label>
-                  <input id="endDate" placeholder={education.endDate}></input>
+                  <input
+                    id="endDate"
+                    placeholder={education.endDate}
+                    type="text"
+                  ></input>
                 </div>
               </div>
               <input type="submit" value="update"></input>
