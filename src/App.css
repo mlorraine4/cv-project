@@ -24,6 +24,7 @@ body {
 .flex {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 label{
@@ -39,6 +40,7 @@ button, input[type="submit"] {
   border: none;
   outline-style: none;
   padding: 5px;
+  height: min-content;
 }
   button:hover, input[type="submit"]:hover {
   background-color: azure;
@@ -85,14 +87,14 @@ button, input[type="submit"] {
   padding: 20px;
 }
 
-.formMain {
+ .forms {
   text-align: center;
   width: 60%;
   margin-left: 15%;
   min-width: 600px;
 }
 
-.subForm, .editPersonal, .editEducation, .editExperience, .editSkills {
+.subForm {
   margin: 20px;
   box-shadow: 5px 5px 5px rgb(128, 128, 128, 0.5);
   padding: 5px;
@@ -105,6 +107,7 @@ button, input[type="submit"] {
 .formTitle {
   margin: 10px;
   font-style: italic;
+  text-align: center;
 }
 
 .phoneError, .formError, .emailError, .placeHolder {
@@ -112,11 +115,6 @@ button, input[type="submit"] {
   font-size: .8em;
   padding: 5px;
   opacity: 0;
-}
-
-.editPersonal, .editEducation, .editExperience, .editSkills {
-  display: none;
-  position: relative;
 }
 
 .cvLeft, .cvRight {
@@ -173,12 +171,13 @@ button, input[type="submit"] {
 }
 
 .closeButton {
-  background-color: lightpink;
+  background-color: rgb(81, 105, 153);
   border-radius: 6px;
   border: none;
   color: white;
   position: absolute;
-  right: 5%;
+  right: 2px;
+  top: 2px;
   padding: 2px 5px 2px 5px;
 }
 
@@ -192,11 +191,18 @@ button, input[type="submit"] {
 
 .cvMain {
   display: none;
+  width: 100vw;
   text-align: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .cvExample {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .skill {
@@ -219,7 +225,6 @@ li {
 
 .cv {
   width: 950px;
-  margin: auto;
   padding: 30px;
 }
 
@@ -229,17 +234,8 @@ li {
   margin-right: 10px;
 }
 
-.taskForm {
-  display: none;
-  position: fixed;
-  top: 10%;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  background-color: antiquewhite;
+.editSkills {
+  padding: 20px;
 }
 
 .italics {
@@ -331,7 +327,7 @@ input[type=text], input[type=email] {
           transition: border linear 0.2s, box-shadow linear 0.2s;
 }
 
-input[type=text]:focus, input[type=email]:focus {
+input[type=text]:focus, input[type=email]:focus, textarea:focus {
   border-color: rgba(82, 168, 236, 0.8);
   outline: 0;
   outline: thin dotted \9;
@@ -340,4 +336,44 @@ input[type=text]:focus, input[type=email]:focus {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+.taskForm, .editEducation, .editSkills, .editExperience {
+  display: none;
+  position: fixed;
+  top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 5px 5px 5px rgb(128, 128, 128, 0.5);
+}
+
+.editSkills {
+  width: 300px;
+}
+
+.taskForm, .editEducation, .editExperience {
+  width: 600px;
+}
+
+.delete {
+  background-color: lightpink;
+}
+
+textarea {
+  width: 60%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
 }

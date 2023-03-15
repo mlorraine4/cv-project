@@ -102,7 +102,11 @@ const EditExperience = ({ experienceArray, handleEdit, handleDelete }) => {
               </div>
               <input type="submit" value="update"></input>
             </form>
-            <button data-key={experience.id} onClick={handleDelete}>
+            <button
+              className="delete"
+              data-key={experience.id}
+              onClick={handleDelete}
+            >
               delete
             </button>
           </div>
@@ -115,10 +119,7 @@ const EditExperience = ({ experienceArray, handleEdit, handleDelete }) => {
 const ExperienceTasks = ({experienceArray, handleSubmit, handleChange}) => {
   return (
     <div className="subForm taskForm">
-      <button
-        className="closeButton"
-        onClick={closeTaskForm}
-      >
+      <button className="closeButton" onClick={closeTaskForm}>
         X
       </button>
       <form onSubmit={handleSubmit}>
@@ -137,12 +138,14 @@ const ExperienceTasks = ({experienceArray, handleSubmit, handleChange}) => {
             </div>
           );
         })}
-        <textarea
-          id="task"
-          placeholder="describe your tasks for this job"
-          onChange={handleChange}
-        ></textarea>
-        <input type="submit" value="add"></input>
+        <div className="flex">
+          <textarea
+            id="task"
+            placeholder="describe your tasks for this job"
+            onChange={handleChange}
+          ></textarea>
+          <input type="submit" value="add"></input>
+        </div>
         <div className="formError tasksEmpty">*Please fill out this field</div>
       </form>
     </div>

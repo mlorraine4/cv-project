@@ -15,7 +15,9 @@ import {
 import ExampleCV from "./CVPreview/ExampleCV";
 import { OpenEditButtons } from "./Form/EditForm";
 import { ExperienceTasks } from "./Form/Experience";
-// TODO: style task form and radio buttons and textarea 
+
+// TODO: validate task form fnc and add errors
+
 class Main extends Component {
   constructor() {
     super();
@@ -361,21 +363,32 @@ class Main extends Component {
     }, 10);
   };
 
-// TODO: make edit a pop up, and main faded and unclickable unitl press update or x
   openEditEducation = (e) => {
     if (this.state.educationArray.length !== 0) {
+      document.querySelector(".editButtons").style.opacity = "0.5";
+      document.querySelector(".editButtons").style.pointerEvents = "none";
+      document.querySelector(".formMain").style.opacity = "0.5";
+      document.querySelector(".formMain").style.pointerEvents = "none";
       document.querySelector(".editEducation").style.display = "block";
     }
   };
 
   openEditExperience = (e) => {
     if (this.state.experienceArray.length !== 0) {
+      document.querySelector(".editButtons").style.opacity = "0.5";
+      document.querySelector(".editButtons").style.pointerEvents = "none";
+      document.querySelector(".formMain").style.opacity = "0.5";
+      document.querySelector(".formMain").style.pointerEvents = "none";
       document.querySelector(".editExperience").style.display = "block";
     }
   };
 
   openEditSkills = (e) => {
     if (this.state.skillsArray.length !== 0) {
+      document.querySelector(".editButtons").style.opacity = "0.5";
+      document.querySelector(".editButtons").style.pointerEvents = "none";
+      document.querySelector(".formMain").style.opacity = "0.5";
+      document.querySelector(".formMain").style.pointerEvents = "none";
       document.querySelector(".editSkills").style.display = "block";
     }
   };
@@ -383,9 +396,11 @@ class Main extends Component {
   openTaskForm = (e) => {
     console.log(this.state.experienceArray.length);
     if (this.state.experienceArray.length !== 0) {
-    document.querySelector(".main").style.opacity = "0.5";
+    document.querySelector(".editButtons").style.opacity = "0.5";
+    document.querySelector(".editButtons").style.pointerEvents = "none";
+    document.querySelector(".formMain").style.opacity = "0.5";
+    document.querySelector(".formMain").style.pointerEvents = "none";
     document.querySelector(".taskForm").style.display = "block";
-    // TODO: make background unclickable?
     }
   };
 

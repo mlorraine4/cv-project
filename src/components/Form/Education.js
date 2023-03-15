@@ -96,7 +96,7 @@ const EditEducation = ({ educationArray, handleEdit, handleDelete }) => {
               </div>
               <input type="submit" value="update"></input>
             </form>
-            <button data-key={education.id} onClick={handleDelete}>
+            <button className="delete" data-key={education.id} onClick={handleDelete}>
               delete
             </button>
           </div>

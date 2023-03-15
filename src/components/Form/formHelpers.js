@@ -4,7 +4,7 @@ import { jsPDF } from "jspdf";
 function openCVEdit() {
   document.querySelector(".cvEdit").style.display = "flex";
   document.querySelector(".cvExample").style.display = "none";
-  document.querySelector(".cvMain").style.display = "block"
+  document.querySelector(".cvMain").style.display = "flex"
 }
 
 function formatPhone(phoneNumber) {
@@ -68,25 +68,26 @@ function clearFormErrors() {
   document.querySelector(".personalEmpty").style.opacity = "0";
 }
 
-function openEdit(formName) {
-  if (document.querySelector(".edit" + formName) !== null) {
-    document.querySelector(".edit" + formName).style.display = "block";
-  }
-}
-
 function closeEdit(formName) {
   if (document.querySelector(".edit" + formName) !== null) {
+    document.querySelector(".editButtons").style.opacity = "1";
+    document.querySelector(".editButtons").style.pointerEvents = "auto";
+    document.querySelector(".formMain").style.opacity = "1";
+    document.querySelector(".formMain").style.pointerEvents = "auto";
     document.querySelector(".edit" + formName).style.display = "none";
   }
 }
 
 function closeTaskForm() {
-  document.querySelector(".main").style.opacity = "1";
+  document.querySelector(".editButtons").style.opacity = "1";
+  document.querySelector(".editButtons").style.pointerEvents = "auto";
+  document.querySelector(".formMain").style.opacity = "1";
+  document.querySelector(".formMain").style.pointerEvents = "auto";
   document.querySelector(".taskForm").style.display = "none";
 }
 
 function downloadPDF() {
-
+console.log(document.querySelectorAll(".cv")[1]);
   htmlToImage
     .toPng(document.querySelectorAll(".cv")[1], { quality: 0.95 })
     .then(function (dataUrl) {
@@ -109,7 +110,6 @@ export {
   validateExperience,
   validateSkills,
   clearFormErrors,
-  openEdit,
   closeEdit,
   closeTaskForm,
   downloadPDF,

@@ -29,24 +29,26 @@ const Form = ({
   openEditEducation,
 }) => {
   return (
-    <div className="formMain">
-      <Personal
-        handleSubmit={handleSubmitPersonal}
-        validateEmail={validateEmail}
-        validatePhone={validatePhone}
-      />
-      <Education
-        handleChange={handleChangeEducation}
-        handleSubmit={handleSubmitEducation}
-      />
-      <Experience
-        handleChange={handleChangeExperience}
-        handleSubmit={handleSubmitExperience}
-      />
-      <Skills
-        handleChange={handleChangeSkills}
-        handleSubmit={handleSubmitSkills}
-      />
+    <div className="forms">
+      <div className="formMain">
+        <Personal
+          handleSubmit={handleSubmitPersonal}
+          validateEmail={validateEmail}
+          validatePhone={validatePhone}
+        />
+        <Education
+          handleChange={handleChangeEducation}
+          handleSubmit={handleSubmitEducation}
+        />
+        <Experience
+          handleChange={handleChangeExperience}
+          handleSubmit={handleSubmitExperience}
+        />
+        <Skills
+          handleChange={handleChangeSkills}
+          handleSubmit={handleSubmitSkills}
+        />
+      </div>
       <EditForm
         educationArray={educationArray}
         experienceArray={experienceArray}

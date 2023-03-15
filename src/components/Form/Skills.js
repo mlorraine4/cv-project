@@ -36,7 +36,11 @@ const EditSkills = ({ handleEdit, skillsArray, handleDelete }) => {
               <input id="skill" placeholder={skill.text} type="text"></input>
               <input type="submit" value="update" id="update"></input>
             </form>
-            <button data-key={skill.id} onClick={handleDelete}>
+            <button
+              className="delete"
+              data-key={skill.id}
+              onClick={handleDelete}
+            >
               delete
             </button>
           </div>
