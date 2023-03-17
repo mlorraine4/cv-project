@@ -40,7 +40,14 @@ const Education = ({ handleSubmit, handleChange }) => {
 const EditEducation = ({ educationArray, handleEdit, handleDelete }) => {
   return (
     <div className="editEducation">
-      <button className="closeButton" onClick={()=>{closeEdit("Education")}}>X</button>
+      <button
+        className="closeButton"
+        onClick={() => {
+          closeEdit("Education");
+        }}
+      >
+        X
+      </button>
       {educationArray.map((education) => {
         return (
           <div key={education.id}>
@@ -55,7 +62,6 @@ const EditEducation = ({ educationArray, handleEdit, handleDelete }) => {
                   <input
                     id="degree"
                     placeholder={education.degree}
-                    onChange={handleEdit}
                     type="text"
                   ></input>
                 </div>
@@ -94,9 +100,16 @@ const EditEducation = ({ educationArray, handleEdit, handleDelete }) => {
                   ></input>
                 </div>
               </div>
+              <div className="educationEditEmpty formError">
+                *All fields are required
+              </div>
               <input type="submit" value="update"></input>
             </form>
-            <button className="delete" data-key={education.id} onClick={handleDelete}>
+            <button
+              className="delete"
+              data-key={education.id}
+              onClick={handleDelete}
+            >
               delete
             </button>
           </div>

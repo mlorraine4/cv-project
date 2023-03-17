@@ -1,6 +1,6 @@
 import React from "react";
 
-import { closeEdit, closeTaskForm } from "./formHelpers";
+import { closeEdit, closeTaskForm, allowEnterTask } from "./formHelpers";
 
 const Experience = ({ handleChange, handleSubmit }) => {
   return (
@@ -47,7 +47,14 @@ const Experience = ({ handleChange, handleSubmit }) => {
 const EditExperience = ({ experienceArray, handleEdit, handleDelete }) => {
   return (
     <div className="editExperience">
-      <button className="closeButton" onClick={()=>{closeEdit("Experience")}}>X</button>
+      <button
+        className="closeButton"
+        onClick={() => {
+          closeEdit("Experience");
+        }}
+      >
+        X
+      </button>
       {experienceArray.map((experience) => {
         return (
           <div key={experience.id}>
@@ -100,6 +107,9 @@ const EditExperience = ({ experienceArray, handleEdit, handleDelete }) => {
                   ></input>
                 </div>
               </div>
+              <div className="experienceEditEmpty formError">
+                *All fields are required
+              </div>
               <input type="submit" value="update"></input>
             </form>
             <button
@@ -124,6 +134,8 @@ const ExperienceTasks = ({experienceArray, handleSubmit, handleChange}) => {
       </button>
       <form onSubmit={handleSubmit}>
         <div className="formTitle">Tasks</div>
+        <div className="jobSelectTitle">Select a job:</div>
+        <div className="flex">
         {experienceArray.map((experience) => {
           return (
             <div key={experience.id} className="flex">
@@ -133,20 +145,22 @@ const ExperienceTasks = ({experienceArray, handleSubmit, handleChange}) => {
                 value={experience.jobTitle}
                 id={experience.jobTitle}
                 name="job"
+                onClick={allowEnterTask}
               />
-              <label>{experience.jobTitle}</label>
+              <label style={{paddingRight: "10px"}}>{experience.jobTitle}</label>
             </div>
           );
         })}
+        </div>
         <div className="flex">
           <textarea
             id="task"
             placeholder="describe your tasks for this job"
             onChange={handleChange}
           ></textarea>
-          <input type="submit" value="add"></input>
+          <input className="taskSubmitButton" type="submit" value="add"></input>
         </div>
-        <div className="formError tasksEmpty">*Please fill out this field</div>
+        <div className="formError taskEmpty">*Please add a job description</div>
       </form>
     </div>
   );

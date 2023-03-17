@@ -11,12 +11,14 @@ import {
   validatePersonal,
   closeEdit,
   openCVEdit,
+  validateTasks,
+  validateEditEducation,
+  validateEditExperience,
+  validateEditSkills,
 } from "./Form/formHelpers";
 import ExampleCV from "./CVPreview/ExampleCV";
 import { OpenEditButtons } from "./Form/EditForm";
 import { ExperienceTasks } from "./Form/Experience";
-
-// TODO: validate task form fnc and add errors
 
 class Main extends Component {
   constructor() {
@@ -123,8 +125,8 @@ class Main extends Component {
     e.preventDefault();
     let targetKey = e.target.getAttribute("data-key");
     let educationArray = this.state.educationArray;
-    if (validateEducation(e.target)) {
-      clearFormErrors();
+    if (validateEditEducation(e.target)) {
+      document.querySelector(".educationEditEmpty").style.opacity = "0";
       for (let i = 0; i < educationArray.length; i++) {
         if (targetKey === educationArray[i].id) {
           this.setState(({ educationArray }) => ({
@@ -134,12 +136,17 @@ class Main extends Component {
                 ...educationArray[i],
                 degree: e.target.degree.value,
                 school: e.target.school.value,
+                location: e.target.location.value,
                 startDate: e.target.startDate.value,
                 endDate: e.target.endDate.value,
               },
-              ...educationArray[i + 1],
+              ...educationArray.slice(i + 1),
             ],
           }));
+          closeEdit("Education");
+          setTimeout(() => {
+            e.target.reset();
+          }, 100);
         }
       }
     }
@@ -219,8 +226,8 @@ class Main extends Component {
     e.preventDefault();
     let targetKey = e.target.getAttribute("data-key");
     let experienceArray = this.state.experienceArray;
-    if (validateExperience(e.target)) {
-      clearFormErrors();
+    if (validateEditExperience(e.target)) {
+      document.querySelector(".experienceEditEmpty").style.opacity = "0";
       for (let i = 0; i < experienceArray.length; i++) {
         if (targetKey === experienceArray[i].id) {
           this.setState(({ experienceArray }) => ({
@@ -239,6 +246,10 @@ class Main extends Component {
           }));
         }
       }
+      closeEdit("Experience");
+      setTimeout(() => {
+        e.target.reset();
+      }, 100);
     }
   };
 
@@ -263,6 +274,7 @@ class Main extends Component {
     }, 10);
   };
 
+  // TASK
   handleChangeExperienceTask = (e) => {
     let radio = document.getElementsByName("job");
     for (let i = 0; i < radio.length; i++) {
@@ -280,14 +292,18 @@ class Main extends Component {
 
   handleSubmitExperienceTask = (e) => {
     e.preventDefault();
-    this.setState({
-      taskArray: [...this.state.taskArray, this.state.task],
-      task: {
-        text: "",
-        key: "",
-        id: uniqid(),
-      },
-    });
+    if (validateTasks(e.target)) {
+      this.setState({
+        taskArray: [...this.state.taskArray, this.state.task],
+        task: {
+          text: "",
+          key: "",
+          id: uniqid(),
+        },
+      });
+      e.target.reset();
+      clearFormErrors();
+    }
   };
 
   // SKILLS
@@ -317,12 +333,10 @@ class Main extends Component {
 
   handleEditSkills = (e) => {
     e.preventDefault();
-    console.log(e.target);
     let targetKey = e.target.getAttribute("data-key");
     let skillsArray = this.state.skillsArray;
-    // TODO: write sep fnc for validating the edit (so the error mess pops for right form)
-    if (validateSkills(e.target)) {
-      clearFormErrors();
+    if (validateEditSkills(e.target)) {
+      document.querySelector(".skillsEditEmpty").style.opacity = "0";
       for (let i = 0; i < skillsArray.length; i++) {
         if (targetKey === skillsArray[i].id) {
           this.setState(({ skillsArray }) => ({
@@ -338,8 +352,10 @@ class Main extends Component {
         }
       }
     }
-    // TODO: reset form
-    // TODO: close form
+    closeEdit("Skills");
+    setTimeout(() => {
+      e.target.reset();
+    }, 100);
   };
 
   handleDeleteSkills = (e) => {
@@ -394,13 +410,12 @@ class Main extends Component {
   };
 
   openTaskForm = (e) => {
-    console.log(this.state.experienceArray.length);
     if (this.state.experienceArray.length !== 0) {
-    document.querySelector(".editButtons").style.opacity = "0.5";
-    document.querySelector(".editButtons").style.pointerEvents = "none";
-    document.querySelector(".formMain").style.opacity = "0.5";
-    document.querySelector(".formMain").style.pointerEvents = "none";
-    document.querySelector(".taskForm").style.display = "block";
+      document.querySelector(".editButtons").style.opacity = "0.5";
+      document.querySelector(".editButtons").style.pointerEvents = "none";
+      document.querySelector(".formMain").style.opacity = "0.5";
+      document.querySelector(".formMain").style.pointerEvents = "none";
+      document.querySelector(".taskForm").style.display = "block";
     }
   };
 
@@ -416,7 +431,9 @@ class Main extends Component {
           <div className="cvExample">
             <div className="exampleText">Example CV</div>
             <ExampleCV />
-            <button className="create" onClick={openCVEdit}>Create Your CV</button>
+            <button className="create" onClick={openCVEdit}>
+              Create Your CV
+            </button>
           </div>
           <div className="cvEdit">
             <Form
@@ -463,7 +480,7 @@ export default Main;
 // {
 //   /* <a href="https://www.flaticon.com/free-icons/email" title="email icons">
 //   Email icons created by Freepik - Flaticon
-// </a>; 
+// </a>;
 
 // <a href="https://www.flaticon.com/free-icons/phone" title="phone icons">Phone icons created by Gregor Cresnar - Flaticon</a>*/
 // <a

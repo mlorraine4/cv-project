@@ -4,7 +4,7 @@ import { jsPDF } from "jspdf";
 function openCVEdit() {
   document.querySelector(".cvEdit").style.display = "flex";
   document.querySelector(".cvExample").style.display = "none";
-  document.querySelector(".cvMain").style.display = "flex"
+  document.querySelector(".cvMain").style.display = "flex";
 }
 
 function formatPhone(phoneNumber) {
@@ -39,6 +39,19 @@ function validateEducation(target) {
   } else return true;
 }
 
+function validateEditEducation(target) {
+  if (
+    target.degree.value === "" ||
+    target.school.value === "" ||
+    target.location.value === "" ||
+    target.startDate.value === "" ||
+    target.endDate.value === ""
+  ) {
+    document.querySelector(".educationEditEmpty").style.opacity = "1";
+    return false;
+  } else return true;
+}
+
 function validateExperience(target) {
   if (
     target.jobTitle.value === "" ||
@@ -52,6 +65,19 @@ function validateExperience(target) {
   } else return true;
 }
 
+function validateEditExperience(target) {
+  if (
+    target.jobTitle.value === "" ||
+    target.company.value === "" ||
+    target.location.value === "" ||
+    target.startDate.value === "" ||
+    target.endDate.value === ""
+  ) {
+    document.querySelector(".experienceEditEmpty").style.opacity = "1";
+    return false;
+  } else return true;
+}
+
 function validateSkills(target) {
   if (target.skill.value === "") {
     document.querySelector(".skillsEmpty").style.opacity = "1";
@@ -59,13 +85,38 @@ function validateSkills(target) {
   } else return true;
 }
 
-function clearFormErrors() {
+function validateEditSkills(target) {
+  if (target.skill.value === "") {
+    document.querySelector(".skillsEditEmpty").style.opacity = "1";
+    return false;
+  } else return true;
+}
+
+function validateTasks(target) {
+  if (target.task.value === "") {
+    document.querySelector(".taskEmpty").style.opacity = "1";
+    return false;
+  } else {
+    document.querySelector(".taskEmpty").style.opacity = "0";
+    return true;
+  }
+}
+
+function allowEnterTask() {
+  document.getElementsByTagName("textarea")[0].style.pointerEvents = "auto";
+  document.querySelector(".taskSubmitButton").style.pointerEvents = "auto";
+}
+// TODO: add all edit?
+function clearForm() {
+  document.getElementsByTagName("textarea")[0].style.pointerEvents = "none";
+  document.querySelector(".taskSubmitButton").style.pointerEvents = "none";
   document.querySelector(".phoneError").style.opacity = "0";
   document.querySelector(".emailError").style.opacity = "0";
   document.querySelector(".formError").style.opacity = "0";
   document.querySelector(".educationEmpty").style.opacity = "0";
   document.querySelector(".skillsEmpty").style.opacity = "0";
   document.querySelector(".personalEmpty").style.opacity = "0";
+  document.querySelector(".taskEmpty").style.opacity = "0";
 }
 
 function closeEdit(formName) {
@@ -87,7 +138,6 @@ function closeTaskForm() {
 }
 
 function downloadPDF() {
-console.log(document.querySelectorAll(".cv")[1]);
   htmlToImage
     .toPng(document.querySelectorAll(".cv")[1], { quality: 0.95 })
     .then(function (dataUrl) {
@@ -109,8 +159,13 @@ export {
   validateEducation,
   validateExperience,
   validateSkills,
-  clearFormErrors,
+  clearForm as clearFormErrors,
   closeEdit,
   closeTaskForm,
   downloadPDF,
+  validateTasks,
+  allowEnterTask,
+  validateEditEducation,
+  validateEditSkills,
+  validateEditExperience,
 };
