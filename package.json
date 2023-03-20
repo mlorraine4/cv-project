@@ -2,6 +2,7 @@
   "name": "cv-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mlorraine4.github.io/cv-project/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -14,12 +15,14 @@
     "uniqid": "^5.4.0",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "scripts": {    
+   "start": "react-scripts start",
+   "predeploy": "npm run build",
+   "deploy": "gh-pages -d build",
+   "build": "react-scripts build",
+   "test": "react-scripts test",
+   "eject": "react-scripts eject"
+},
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -40,6 +43,7 @@
   },
   "devDependencies": {
     "eslint": "^8.36.0",
-    "eslint-plugin-unused-imports": "^2.0.0"
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "gh-pages": "^5.0.0"
   }
 }
